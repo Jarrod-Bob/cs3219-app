@@ -34,10 +34,6 @@ const columns = [
   },
 ];
 
-function createData(name, email, matric, faculty) {
-  return { name, email, matric, faculty };
-}
-
 const useStyles = makeStyles({
   root: {
     width: "100%",
@@ -130,9 +126,7 @@ export default function StudentsTable() {
       matric: matric,
       faculty: faculty,
     };
-    await axios.post("http://localhost:8080/api/students", data).then((res) => {
-      const data = res.data;
-    });
+    await axios.post("http://localhost:8080/api/students", data);
     await axios.get(`http://localhost:8080/api/students`).then((res) => {
       const data = res.data;
       setUsers(data.data.reverse());
@@ -148,11 +142,7 @@ export default function StudentsTable() {
       matric: matric,
       faculty: faculty,
     };
-    await axios
-      .put(`http://localhost:8080/api/students/${selected._id}`, data)
-      .then((res) => {
-        const data = res.data;
-      });
+    await axios.put(`http://localhost:8080/api/students/${selected._id}`, data);
     await axios.get(`http://localhost:8080/api/students`).then((res) => {
       const data = res.data;
       setUsers(data.data.reverse());
@@ -162,11 +152,7 @@ export default function StudentsTable() {
   };
 
   const handleDelete = async () => {
-    await axios
-      .delete(`http://localhost:8080/api/students/${selected._id}`)
-      .then((res) => {
-        const data = res.data;
-      });
+    await axios.delete(`http://localhost:8080/api/students/${selected._id}`);
     await axios.get(`http://localhost:8080/api/students`).then((res) => {
       const data = res.data;
       setUsers(data.data.reverse());
